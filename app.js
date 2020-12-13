@@ -9,10 +9,11 @@ var usersRouter = require("./routes/users");
 
 var app = express();
 
+const KEYS = require("./EXTERNAL_KEYS");
+
 //Set up mongoose connection
 var mongoose = require("mongoose");
-var mongoDB =
-  "mongodb+srv://admin:&QikERCFD4X!Xg@cluster0.johvh.mongodb.net/local_library?retryWrites=true&w=majority";
+var mongoDB = `mongodb+srv://${KEYS.USER}:${KEYS.PASSWORD}@cluster0.johvh.mongodb.net/local_library?retryWrites=true&w=majority`;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 var db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
