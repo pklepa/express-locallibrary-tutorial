@@ -1,4 +1,4 @@
-var BookInstance = require("../models/bookinstance");
+var BookInstance = require("../models/bookinstance.js");
 var Book = require("../models/book");
 
 var async = require("async");
