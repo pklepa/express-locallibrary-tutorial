@@ -15,6 +15,16 @@ AuthorSchema.virtual("name").get(function () {
   return this.family_name + ", " + this.first_name;
 });
 
+// Virtual for author's date of birth formatted to be used in update
+AuthorSchema.virtual("date_of_birth_formatted_for_update").get(function () {
+  return DateTime.fromJSDate(this.date_of_birth).toISODate();
+});
+
+// Virtual for author's date of death formatted to be used in update
+AuthorSchema.virtual("date_of_death_formatted_for_update").get(function () {
+  return DateTime.fromJSDate(this.date_of_death).toISODate();
+});
+
 // Virtual for author's lifespan
 AuthorSchema.virtual("lifespan").get(function () {
   return (
@@ -27,7 +37,7 @@ AuthorSchema.virtual("url").get(function () {
   return "/catalog/author/" + this._id;
 });
 
-// Virtual for author's lifespan
+// Virtual for author's lifespan formatted
 AuthorSchema.virtual("lifespan_string").get(function () {
   const formatted_birth = this.date_of_birth
     ? DateTime.fromJSDate(this.date_of_birth).toLocaleString(DateTime.DATE_MED)
