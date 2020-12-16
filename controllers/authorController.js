@@ -188,7 +188,7 @@ exports.author_update_get = function (req, res) {
   async.parallel(
     {
       author: function (callback) {
-        Author.find(callback);
+        Author.findById(req.params.id).exec(callback);
       },
     },
     function (err, results) {
@@ -244,10 +244,11 @@ exports.author_update_post = [
     if (!errors.isEmpty()) {
       // There are errors. Render form again with sanitized values/errors messages.
       res.render("author_form", {
-        title: "Create Author",
+        title: "Update Author",
         author: req.body,
         errors: errors.array(),
       });
+      console.log(req.body);
       return;
     } else {
       // Data from form is valid.
